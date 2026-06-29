@@ -9,9 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# ------------------------------
 # 1. Load Dataset
-# ------------------------------
 
 # Load Titanic dataset
 df = pd.read_csv("titanic.csv")
@@ -28,9 +26,7 @@ print(df.info())
 print("\nMissing Values:")
 print(df.isnull().sum())
 
-# ------------------------------
 # 2. Handle Missing Values
-# ------------------------------
 
 # Fill missing Age values with median
 df['Age'].fillna(df['Age'].median(), inplace=True)
@@ -45,9 +41,7 @@ df.drop(columns=['Cabin'], inplace=True)
 print("\nMissing Values After Cleaning:")
 print(df.isnull().sum())
 
-# ------------------------------
 # 3. Convert Categorical Data
-# ------------------------------
 
 # Convert Sex column to numerical
 df['Sex'] = df['Sex'].map({'male': 0, 'female': 1})
@@ -58,9 +52,7 @@ df = pd.get_dummies(df, columns=['Embarked'], drop_first=True)
 print("\nDataset After Encoding:")
 print(df.head())
 
-# ------------------------------
 # 4. Normalize / Standardize Data
-# ------------------------------
 
 from sklearn.preprocessing import StandardScaler
 
@@ -74,9 +66,7 @@ df[num_cols] = scaler.fit_transform(df[num_cols])
 print("\nStandardized Data:")
 print(df[num_cols].head())
 
-# ------------------------------
 # 5. Visualize Outliers
-# ------------------------------
 
 plt.figure(figsize=(10, 5))
 
@@ -93,9 +83,7 @@ plt.title("Boxplot of Fare")
 plt.tight_layout()
 plt.show()
 
-# ------------------------------
 # 6. Remove Outliers (IQR Method)
-# ------------------------------
 
 # Function to remove outliers
 def remove_outliers(data, column):
@@ -114,9 +102,7 @@ df = remove_outliers(df, 'Fare')
 print("\nShape After Removing Outliers:")
 print(df.shape)
 
-# ------------------------------
 # Final Cleaned Dataset
-# ------------------------------
 
 print("\nFinal Cleaned Dataset:")
 print(df.head())
